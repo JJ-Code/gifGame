@@ -151,6 +151,5 @@ const gamePlay = (array) => {
 
 }
 
-gamePlay(gameCard);
 
-// gamePlay(gameCard);
+gamePlay(gameCard);

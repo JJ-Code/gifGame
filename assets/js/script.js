@@ -1,4 +1,3 @@
-
 //Define Giphy Key 
 const url = "https://api.giphy.com/v1/gifs/search?q="
 const inputField = document.querySelector('#giphy-input');
@@ -151,5 +150,6 @@ const gamePlay = (array) => {
     });
 
 }
+
 
 gamePlay(gameCard);

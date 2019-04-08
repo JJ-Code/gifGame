@@ -21,3 +21,31 @@
 // export default {
 //     grabVal
 // };
+
+
+const try_14 = () => {
+    let results = [ "a", "b", "c", "d", "e"]
+    let base = 1
+
+for (var i = 0; i < results.length; i++) {
+        let counter = base++
+        // const count2String = counter.toString()
+    const log = `${results[i]}_${counter}`
+    console.log(log)
+    console.log(typeof(log))
+}
+
+}
+
+const try_15 = () => {
+    let results = ["a", "b", "c", "d", "e"]
+
+    for (var i = 0; i < results.length; i++) {
+
+        // const count2String = counter.toString()
+        const log = `${results[i]}_${i}`
+        console.log(log)
+        console.log(typeof (log))
+    }
+
+}

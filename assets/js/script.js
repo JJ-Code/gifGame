@@ -127,7 +127,7 @@ const gamePlay = (array) => {
         const foundPic = array.findIndex(gifPic => {
             console.log(gifPic.id === idPic)
             return gifPic.id === idPic
-            
+
         });
         console.log(foundPic)
         // const foundPic = array.findIndex(gifPic => {

@@ -5,14 +5,13 @@ const apiKey = "&api_key=dc6zaTOxFJmzC&limit=8";
 const submit = document.querySelector("#submit-giphy");
 
 // Game play variables
-const giphyView = document.querySelector("#giphy-view");
 let wins = 0;
 let losses = 0;
 let userScore = 0;
 let computerScore = Math.floor(Math.random() * 102) + 19;
 const gameCard = [];
-const giphyImageClass = document.body.querySelector(".giphyImage")
-console.log(giphyImageClass)
+
+
 
 // grab Gif from API
 const getGif = async () => {
@@ -65,16 +64,18 @@ const randomNumGenerator = (array) => {
     }
 }
 
-// console.log(computerScore)
+//Make Game board - Step 2
 const gameBoard = () => {
-    // console.log(computerScore)
     document.querySelector(".computer-score").innerHTML = computerScore;
     document.querySelector(".user-score").innerHTML = userScore;
     document.querySelector(".win-score").innerHTML = wins;
     document.querySelector(".loss-score").innerHTML = losses;
     // console.log(computerScore)
 };
+
+
 gameBoard();
+
 
 
 const makeCard = (array) => {
@@ -87,8 +88,7 @@ const makeCard = (array) => {
         giphyImage.classList.add("giphyImage");
         giphyDiv.appendChild(giphyImage);
         document.getElementById("giphy-view").appendChild(giphyDiv);
-
-    }
+    } //end of forloop 
 
 } //end of makeCard
 
@@ -121,40 +121,59 @@ const loss = () => {
 
 //This makes the gifPic images clickabe and updaes the user score.
 const gamePlay = (array) => {
-    console.log(giphyView)
+
+//     console.log(array)
+// document.body.addEventListener('click', function (event, array) {
+//             if (event.srcElement.className == 'giphyImage'){
+// console.log(array)
+    //  document.addEventListener('click', function (e) {
+    //      if (e.target && e.target.id == 'data-id') {
+             //do something
+
 
     $("body").on("click", ".giphyImage", function () {
-        // document.addEventListener("click",
-        // function () {
-        console.log(gameCard)
-        console.log(giphyImageClass)
-        // document.addEventListener("click",".giphyImage", function () {
 
-        const idPic = this.getAttribute("data-id");
-        console.log(idPic);
-        console.log("clicked")
-        const foundPic = array.findIndex(gifPic => {
-            console.log(gifPic.id === idPic)
-            return gifPic.id === idPic
+    // window.getElementById("data-id").attachEvent("onclick",
+    //getElementById("data-id").addEventListener("click",function () {
+                // event.preventDefault()
+                console.log("clicked")
+            console.log(gameCard)
 
-        });
-        console.log(foundPic)
+            // document.addEventListener("click",".giphyImage", function () {
 
-        userScore = userScore + array[foundPic].pts
-        console.log(array[foundPic].pts)
-        console.log(foundPic)
+            const idPic = this.getAttribute("data-id");
+            console.log(idPic);
+            console.log("clicked")
+            const foundPic = array.findIndex(gifPic => {
+                console.log(gifPic.id === idPic)
+                return gifPic.id === idPic
 
-        document.querySelector(".user-score").innerHTML = userScore;
-        if (userScore == computerScore) {
-            win();
-        } else if (userScore > computerScore) {
-            loss();
-        }
-        console.log(userScore);
+            });
+            console.log(foundPic)
 
-    })
+            userScore = userScore + array[foundPic].pts
+            console.log(array[foundPic].pts)
+            console.log(foundPic)
+
+            document.querySelector(".user-score").innerHTML = userScore;
+            if (userScore == computerScore) {
+                win();
+            } else if (userScore > computerScore) {
+                loss();
+            }
+            console.log(userScore);
+
+        // })
+
+                 //}
+                 });
+
 
 }
 
+
+
 //play game
 gamePlay(gameCard);
+
+

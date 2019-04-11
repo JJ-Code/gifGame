@@ -1,16 +1,20 @@
 //Define Giphy Key 
 const url = "https://api.giphy.com/v1/gifs/search?q="
-const inputField = document.querySelector('#giphy-input');
+const inputField = document.querySelector("#giphy-input");
 const apiKey = "&api_key=dc6zaTOxFJmzC&limit=8";
-const submit = document.querySelector('#submit-giphy');
+const submit = document.querySelector("#submit-giphy");
 
 // Game play variables
-const giphyView = document.querySelector('#giphy-view');
+const giphyView = document.querySelector("#giphy-view");
+
+
 let wins = 0;
 let losses = 0;
 let userScore = 0;
 let computerScore = Math.floor(Math.random() * 102) + 19;
 const gameCard = [];
+const giphyImageClass = document.body.querySelector(".giphyImage")
+console.log(giphyImageClass)
 
 // grab Gif from API
 const getGif = async () => {
@@ -40,7 +44,7 @@ const getGif = async () => {
             }
 
         } else {
-            throw new Error('Request Failed!');
+            throw new Error("Request Failed!");
         } //end of else
     } // end of try
     catch (error) {
@@ -53,38 +57,47 @@ const getGif = async () => {
 } //end of grab gif 
 
 //listener 
-submit.addEventListener('click', getGif);
+submit.addEventListener("click", getGif);
 
 //random Num Generator
 const randomNumGenerator = (array) => {
     for (i = 0; i < array.length; i++) {
         array[i].pts = Math.floor(Math.random() * 12) + 1;
-        console.log(array[i].id + ': ' + array[i].pts);
+        console.log(array[i].id + ": " + array[i].pts);
     }
 }
 
-
+console.log(computerScore)
 const gameBoard = () => {
-    $('.computer-score').text(computerScore);
-    $('.user-score').text(userScore);
-    $('.win-score').text(wins);
-    $('.loss-score').text(losses);
-};
+    console.log(computerScore)
+    // $(".computer-score").text(computerScore);
+    // $(".user-score").text(userScore);
+    // $(".win-score").text(wins);
+    // $(".loss-score").text(losses);
+    document.querySelector(".computer-score").innerHTML = computerScore;
+    document.querySelector(".user-score").innerHTML = userScore;
+    document.querySelector(".win-score").innerHTML = wins;
+    document.querySelector(".loss-score").innerHTML = losses;
+    console.log("load")
+    console.log(computerScore)
 
+
+};
 gameBoard();
+
 
 const makeCard = (array) => {
     for (let i = 0; i < array.length; i++) {
-        const giphyDiv = $('<div>');
-        giphyDiv.addClass('col-lg-3 giphyDiv')
-        const giphyImage = $('<img>');
-        giphyImage.attr({
-            'src': array[i].url,
-            'data-id': array[i].id,
-        });
-        giphyImage.addClass('giphyImage');
-        giphyDiv.append(giphyImage);
-        $('#giphy-view').append(giphyDiv);
+        // const giphyDiv = $("<div>");
+        const giphyDiv = document.createElement("div");
+        giphyDiv.classList.add("col-lg-3", "giphyDiv");
+        const giphyImage = document.createElement("img");
+        giphyImage.src = array[i].url;
+        giphyImage.setAttribute("data-id", array[i].id);
+        giphyImage.classList.add("giphyImage");
+        giphyDiv.appendChild(giphyImage);
+        document.getElementById("giphy-view").appendChild(giphyDiv);
+
 
 
     }
@@ -96,9 +109,8 @@ const reset = () => {
     userScore = 0;
     computerScore = Math.floor(Math.random() * 102) + 19;
     randomNumGenerator(gameCard);
-    $('.computer-score').text(computerScore);
-    $('.user-score').text(userScore);
-
+    document.querySelector(".computer-score").innerHTML = computerScore;
+    document.querySelector(".user-score").innerHTML = userScore;
 };
 
 
@@ -106,40 +118,45 @@ const reset = () => {
 const win = () => {
     wins++;
     alert("You win!");
-    $('.win-score').text(wins);
+    document.querySelector(".win-score").innerHTML = wins;
     reset();
 
 };
 //If a user does not win
 const loss = () => {
     losses++;
-    alert('You did not win, loser!');
-    $('.loss-score').text(losses);
+    alert("You did not win, loser!");
+    document.querySelector(".loss-score").innerHTML = losses;
     reset();
 };
 
+
 //This makes the gifPic images clickabe and updaes the user score.
 const gamePlay = (array) => {
-    $('body').on('click', '.giphyImage', function () {
-        const idPic = $(this).attr('data-id');
+    console.log(giphyView)
+
+    $("body").on("click", ".giphyImage", function () {
+        // document.addEventListener("click",
+        // function () {
+        console.log(gameCard)
+        console.log(giphyImageClass)
+        // document.addEventListener("click",".giphyImage", function () {
+
+        const idPic = this.getAttribute("data-id");
         console.log(idPic);
-        console.log('clicked')
+        console.log("clicked")
         const foundPic = array.findIndex(gifPic => {
             console.log(gifPic.id === idPic)
             return gifPic.id === idPic
 
         });
         console.log(foundPic)
-        // const foundPic = array.findIndex(gifPic => {
-        //     return gifPic.id === idPic
 
-        // })
-        // array[foundPic].pts example array[3].pts
         userScore = userScore + array[foundPic].pts
         console.log(array[foundPic].pts)
         console.log(foundPic)
 
-        $('.user-score').text(userScore);
+        document.querySelector(".user-score").innerHTML = userScore;
         if (userScore == computerScore) {
             win();
         } else if (userScore > computerScore) {
@@ -147,7 +164,7 @@ const gamePlay = (array) => {
         }
         console.log(userScore);
 
-    });
+    })
 
 }
 

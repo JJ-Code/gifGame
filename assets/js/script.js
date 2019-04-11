@@ -6,8 +6,6 @@ const submit = document.querySelector("#submit-giphy");
 
 // Game play variables
 const giphyView = document.querySelector("#giphy-view");
-
-
 let wins = 0;
 let losses = 0;
 let userScore = 0;
@@ -21,7 +19,7 @@ const getGif = async () => {
     event.preventDefault();
     const giphyWord = inputField.value.trim().toLowerCase();
     const urlToFetch = `${url}${giphyWord}${apiKey}`;
-    console.log(urlToFetch)
+    //console.log(urlToFetch)
     try {
         const response = await fetch(urlToFetch);
         if (response.ok) {
@@ -67,28 +65,20 @@ const randomNumGenerator = (array) => {
     }
 }
 
-console.log(computerScore)
+// console.log(computerScore)
 const gameBoard = () => {
-    console.log(computerScore)
-    // $(".computer-score").text(computerScore);
-    // $(".user-score").text(userScore);
-    // $(".win-score").text(wins);
-    // $(".loss-score").text(losses);
+    // console.log(computerScore)
     document.querySelector(".computer-score").innerHTML = computerScore;
     document.querySelector(".user-score").innerHTML = userScore;
     document.querySelector(".win-score").innerHTML = wins;
     document.querySelector(".loss-score").innerHTML = losses;
-    console.log("load")
-    console.log(computerScore)
-
-
+    // console.log(computerScore)
 };
 gameBoard();
 
 
 const makeCard = (array) => {
     for (let i = 0; i < array.length; i++) {
-        // const giphyDiv = $("<div>");
         const giphyDiv = document.createElement("div");
         giphyDiv.classList.add("col-lg-3", "giphyDiv");
         const giphyImage = document.createElement("img");
@@ -97,8 +87,6 @@ const makeCard = (array) => {
         giphyImage.classList.add("giphyImage");
         giphyDiv.appendChild(giphyImage);
         document.getElementById("giphy-view").appendChild(giphyDiv);
-
-
 
     }
 
@@ -168,6 +156,5 @@ const gamePlay = (array) => {
 
 }
 
+//play game
 gamePlay(gameCard);
-
-// gamePlay(gameCard);

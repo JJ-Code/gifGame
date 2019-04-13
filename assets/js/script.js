@@ -17,8 +17,6 @@ let gameCard = [];
 // grab Gif from API
 const getGif = async () => {
   event.preventDefault();
-  gameCard = [];
-  gifContainter.innerHTML = "";
 
   const giphyWord = inputField.value.trim().toLowerCase();
   const urlToFetch = `${url}${giphyWord}${apiKey}`;
@@ -40,8 +38,6 @@ const getGif = async () => {
         }
 
         gameCard.push(gifObj)
-        // inputField.clear();
-        inputField.value = '';
 
         // console.log(gifObj);
       }
@@ -128,19 +124,10 @@ const loss = () => {
 //This makes the gifPic images clickabe and updaes the user score.
 const gamePlay = (array) => {
 
-  //     console.log(array)
-  // document.body.addEventListener('click', function (event, array) {
-  //             if (event.srcElement.className == 'giphyImage'){
-  // console.log(array)
-  //  document.addEventListener('click', function (e) {
-  //      if (e.target && e.target.id == 'data-id') {
-  //do something
-
-
   $("body").on("click", ".giphyImage", function () {
 
+    console.log("clicked")
     console.log(gameCard)
-
     const idPic = this.getAttribute("data-id");
     console.log(idPic);
     console.log("clicked")
@@ -163,9 +150,6 @@ const gamePlay = (array) => {
     }
     console.log(userScore);
 
-    // })
-
-    //}
   });
 
 
@@ -173,4 +157,6 @@ const gamePlay = (array) => {
 
 
 //play game
+
 gamePlay(gameCard);
+

@@ -172,6 +172,5 @@ const gamePlay = (array) => {
 }
 
 
-
 //play game
 gamePlay(gameCard);

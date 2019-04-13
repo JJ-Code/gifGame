@@ -3,19 +3,21 @@ const url = "https://api.giphy.com/v1/gifs/search?q="
 const inputField = document.querySelector("#giphy-input");
 const apiKey = "&api_key=dc6zaTOxFJmzC&limit=8";
 const submit = document.querySelector("#submit-giphy");
+let gifContainter = document.querySelector("#giphy-view");
 
 // Game play variables
 let wins = 0;
 let losses = 0;
 let userScore = 0;
 let computerScore = Math.floor(Math.random() * 102) + 19;
-const gameCard = [];
+let gameCard = [];
 
 
 
 // grab Gif from API
 const getGif = async () => {
   event.preventDefault();
+
   const giphyWord = inputField.value.trim().toLowerCase();
   const urlToFetch = `${url}${giphyWord}${apiKey}`;
   //console.log(urlToFetch)
@@ -154,10 +156,7 @@ const gamePlay = (array) => {
 }
 
 
-
-
-
-
-
 //play game
+
 gamePlay(gameCard);
+

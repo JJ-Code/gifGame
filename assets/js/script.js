@@ -17,7 +17,7 @@ let gameCard = [];
 // grab Gif from API
 const getGif = async () => {
   event.preventDefault();
-
+  gifContainter.innerHTML = "";
   const giphyWord = inputField.value.trim().toLowerCase();
   const urlToFetch = `${url}${giphyWord}${apiKey}`;
   //console.log(urlToFetch)
@@ -38,6 +38,7 @@ const getGif = async () => {
         }
 
         gameCard.push(gifObj)
+        inputField.value = '';
 
         // console.log(gifObj);
       }
@@ -159,4 +160,3 @@ const gamePlay = (array) => {
 //play game
 
 gamePlay(gameCard);
-

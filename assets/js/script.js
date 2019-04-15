@@ -1,9 +1,11 @@
+
 //Define Giphy Key 
 const url = "https://api.giphy.com/v1/gifs/search?q="
 const inputField = document.querySelector("#giphy-input");
 const apiKey = "&api_key=dc6zaTOxFJmzC&limit=8";
 const submit = document.querySelector("#submit-giphy");
 let gifContainter = document.querySelector("#giphy-view");
+
 
 // Game play variables
 let wins = 0;
@@ -17,6 +19,8 @@ let gameCard = [];
 // grab Gif from API
 const getGif = async () => {
   event.preventDefault();
+  reset();
+  gameCard = [];
   gifContainter.innerHTML = "";
   const giphyWord = inputField.value.trim().toLowerCase();
   const urlToFetch = `${url}${giphyWord}${apiKey}`;
@@ -53,11 +57,15 @@ const getGif = async () => {
 
   randomNumGenerator(gameCard);
   makeCard(gameCard);
-  // console.log(gameCard);
+
+  console.log(gameCard);
 } //end of grab gif 
 
 //listener 
+const onSubmit = () => {
 submit.addEventListener("click", getGif);
+}
+
 
 //random Num Generator
 const randomNumGenerator = (array) => {
@@ -75,9 +83,9 @@ const gameBoard = () => {
   document.querySelector(".loss-score").innerHTML = losses;
   // console.log(computerScore)
 };
-
-
 gameBoard();
+
+
 
 
 
@@ -123,40 +131,40 @@ const loss = () => {
 
 
 //This makes the gifPic images clickabe and updaes the user score.
-const gamePlay = (array) => {
+const gamePlay = () => {
 
-  $("body").on("click", ".giphyImage", function () {
+  gifContainter.addEventListener('click', function (event) {
+    console.log(event.target.dataset.id);
+    
+      console.log(gameCard)
+      const idPic = event.target.dataset.id; //mouse object location in array
+      console.log(idPic);
+      console.log("clicked")
+      
+      const foundPic = gameCard.findIndex(gifPic => {
+        console.log(gifPic.id === idPic)
+        return gifPic.id === idPic
 
-    console.log("clicked")
-    console.log(gameCard)
-    const idPic = this.getAttribute("data-id");
-    console.log(idPic);
-    console.log("clicked")
-    const foundPic = array.findIndex(gifPic => {
-      console.log(gifPic.id === idPic)
-      return gifPic.id === idPic
+      });
+      //add scores 
+      userScore += gameCard[foundPic].pts
 
-    });
-    console.log(foundPic)
-
-    userScore = userScore + array[foundPic].pts
-    console.log(array[foundPic].pts)
-    console.log(foundPic)
-
-    document.querySelector(".user-score").innerHTML = userScore;
-    if (userScore == computerScore) {
-      win();
-    } else if (userScore > computerScore) {
-      loss();
-    }
-    console.log(userScore);
-
-  });
+      document.querySelector(".user-score").innerHTML = userScore;
+      if (userScore == computerScore) {
+        win();
+      } else if (userScore > computerScore) {
+        loss();
+      }
+      console.log(userScore);
+  }); //end of click
 
 
-}
+} //END of Gameplay
 
-
+//activate submit 
+onSubmit();
 //play game
+gamePlay();
 
-gamePlay(gameCard);
+
+

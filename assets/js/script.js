@@ -167,4 +167,6 @@ onSubmit();
 gamePlay();
 
 
-
+const jumpto =(anchor)=>{
+  window.location.href = "#" + anchor;
+}

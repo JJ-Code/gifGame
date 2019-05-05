@@ -2,7 +2,7 @@
 //Define Giphy Key 
 const url = "https://api.giphy.com/v1/gifs/search?q="
 const inputField = document.querySelector("#giphy-input");
-const apiKey = "&api_key=dc6zaTOxFJmzC&limit=8";
+const apiKey = "&api_key=39a3e436bae449eebf5904e0af9ad67c&limit=8";
 const submit = document.querySelector("#submit-giphy");
 let gifContainter = document.querySelector("#giphy-view");
 
@@ -49,8 +49,10 @@ const getGif = async () => {
 
     } else {
       throw new Error("Request Failed!");
-    } //end of else
+    } //end of else 
   } // end of try
+
+
   catch (error) {
     console.log(error.message)
   } //end of catch
@@ -84,8 +86,6 @@ const gameBoard = () => {
   // console.log(computerScore)
 };
 gameBoard();
-
-
 
 
 
